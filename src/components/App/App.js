@@ -124,6 +124,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>App</h1>
+        <div className='attention'>
+          <span className='attention__icon'>⚠</span> the price is taken from the
+          average of history
+        </div>
         {this.state.error && <p style={{ color: 'red' }}>{this.state.error}</p>}
         <p>SP/minute = {spPerMinute}</p>
         <p>SP/day = {spPerDay}</p>
