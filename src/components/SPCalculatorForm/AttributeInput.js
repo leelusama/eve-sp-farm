@@ -1,7 +1,7 @@
 import React from 'react';
 
 function AttributeInput(props) {
-  const { label, name, value, onChange: handleChange } = props;
+  const { label, name, defaultValue } = props;
   return (
     <React.Fragment>
       <label htmlFor={name}>{label}</label>
@@ -15,8 +15,7 @@ function AttributeInput(props) {
         step='1'
         placeholder='17 - 100'
         required
-        value={value}
-        onChange={handleChange}
+        defaultValue={defaultValue}
       />
       <span className='validity'></span>
     </React.Fragment>
