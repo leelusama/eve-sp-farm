@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/eve-sp-farm/static/css/main.b668d98f.chunk.css",
+    "main.js": "/eve-sp-farm/static/js/main.9b795fa1.chunk.js",
+    "main.js.map": "/eve-sp-farm/static/js/main.9b795fa1.chunk.js.map",
+    "runtime-main.js": "/eve-sp-farm/static/js/runtime-main.d6272f2b.js",
+    "runtime-main.js.map": "/eve-sp-farm/static/js/runtime-main.d6272f2b.js.map",
+    "static/js/2.0d4ffaa7.chunk.js": "/eve-sp-farm/static/js/2.0d4ffaa7.chunk.js",
+    "static/js/2.0d4ffaa7.chunk.js.map": "/eve-sp-farm/static/js/2.0d4ffaa7.chunk.js.map",
+    "index.html": "/eve-sp-farm/index.html",
+    "precache-manifest.f39990ef1e607d6512eb039ceedd862e.js": "/eve-sp-farm/precache-manifest.f39990ef1e607d6512eb039ceedd862e.js",
+    "service-worker.js": "/eve-sp-farm/service-worker.js",
+    "static/css/main.b668d98f.chunk.css.map": "/eve-sp-farm/static/css/main.b668d98f.chunk.css.map",
+    "static/js/2.0d4ffaa7.chunk.js.LICENSE.txt": "/eve-sp-farm/static/js/2.0d4ffaa7.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6272f2b.js",
+    "static/js/2.0d4ffaa7.chunk.js",
+    "static/css/main.b668d98f.chunk.css",
+    "static/js/main.9b795fa1.chunk.js"
+  ]
+}
