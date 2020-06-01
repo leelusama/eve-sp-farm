@@ -1,5 +1,6 @@
 import React from 'react';
 import SPCalculatorForm from '../SPCalculatorForm';
+import Eve from '../../constants';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,55 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const fetchs = [];
+    fetchs.push(
+      fetch(
+        `https://esi.evetech.net/latest/markets/${Eve.region['the forge']}/history/?datasource=tranquility&type_id=${Eve.type['large skill injector']}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const last = data.pop();
+          if (last) {
+            this.setState({
+              largeSkillInjectorPrice: last.average / 1000000,
+            });
+          }
+        })
+    );
+    fetchs.push(
+      fetch(
+        `https://esi.evetech.net/latest/markets/${Eve.region['the forge']}/history/?datasource=tranquility&type_id=${Eve.type['skill extractor']}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const last = data.pop();
+          if (last) {
+            this.setState({
+              skillExtractorPrice: last.average / 1000000,
+            });
+          }
+        })
+    );
+
+    fetchs.push(
+      fetch(
+        `https://esi.evetech.net/latest/markets/${Eve.region['the forge']}/history/?datasource=tranquility&type_id=${Eve.type['plex']}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          const last = data.pop();
+          if (last) {
+            this.setState({
+              plexPrice: last.average / 1000000,
+            });
+          }
+        })
+    );
+
+    Promise.all(fetchs).catch(() => console.log('fetch error'));
   }
 
   handleChange(e) {
