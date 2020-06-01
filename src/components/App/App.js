@@ -7,6 +7,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      error: '',
       omegaClone: true,
       primaryAttribute: 32,
       secondaryAttribute: 26,
@@ -65,7 +66,9 @@ class App extends React.Component {
         })
     );
 
-    Promise.all(fetchs).catch(() => console.log('fetch error'));
+    Promise.all(fetchs).catch(() =>
+      this.setState({ error: 'Did not get some prices. Check manually.' })
+    );
   }
 
   handleChange(e) {
@@ -121,6 +124,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>App</h1>
+        {this.state.error && <p style={{ color: 'red' }}>{this.state.error}</p>}
         <p>SP/minute = {spPerMinute}</p>
         <p>SP/day = {spPerDay}</p>
         <p>SP/month = {spPerMonth}</p>
