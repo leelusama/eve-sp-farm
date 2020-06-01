@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/eve-sp-farm/precache-manifest.dd4dc7dc9da87459e36a0651e1834cf7.js"
+  "/eve-sp-farm/precache-manifest.779f232ea53cf7a57ef974ef0bb78785.js"
 );
 
 self.addEventListener('message', (event) => {

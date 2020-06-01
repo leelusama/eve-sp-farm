@@ -1,0 +1,2 @@
+input:invalid+span:after{content:"✖";color:red;padding-left:5px}input:valid+span:after{content:"✓";color:green;padding-left:5px}.attention{color:#fff;background-color:#000;border-radius:30px;text-align:center;font-size:24px;width:550px;margin:50px auto}.attention__icon{font-size:72px;color:#ff0}
+/*# sourceMappingURL=main.8f61e100.chunk.css.map */
