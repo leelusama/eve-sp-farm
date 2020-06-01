@@ -9,6 +9,9 @@ class App extends React.Component {
       omegaClone: true,
       primaryAttribute: 32,
       secondaryAttribute: 26,
+      largeSkillInjectorPrice: 736,
+      skillExtractorPrice: 289,
+      plexPrice: 2.609,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,6 +26,9 @@ class App extends React.Component {
         break;
       case 'primaryAttribute':
       case 'secondaryAttribute':
+      case 'largeSkillInjectorPrice':
+      case 'skillExtractorPrice':
+      case 'plexPrice':
         this.setState({ [name]: Number(value) });
         break;
       default:
@@ -35,22 +41,40 @@ class App extends React.Component {
   }
 
   calculate() {
-    const { omegaClone, primaryAttribute, secondaryAttribute } = this.state;
+    const {
+      omegaClone,
+      primaryAttribute,
+      secondaryAttribute,
+      largeSkillInjectorPrice,
+      skillExtractorPrice,
+      plexPrice,
+    } = this.state;
+
     const omegaMod = omegaClone ? 1 : 0.5;
     const spPerMinute =
       (primaryAttribute + secondaryAttribute * 0.5) * omegaMod;
     const spPerDay = spPerMinute * 60 * 24;
     const spPerMonth = spPerDay * 30;
 
-    return [spPerMinute, spPerDay, spPerMonth];
+    const injectorsPerMonth = spPerMonth / (500 * 1000);
+
+    const benefit =
+      (largeSkillInjectorPrice - skillExtractorPrice) * injectorsPerMonth -
+      plexPrice * 500;
+
+    return { spPerMinute, spPerDay, spPerMonth, benefit };
   }
   render() {
     const { omegaClone, primaryAttribute, secondaryAttribute } = this.state;
-    const [spPerMinute, spPerDay, spPerMonth] = this.calculate();
+    const { spPerMinute, spPerDay, spPerMonth, benefit } = this.calculate();
 
     return (
       <div>
         <h1>App</h1>
+        <p>SP/minute = {spPerMinute}</p>
+        <p>SP/day = {spPerDay}</p>
+        <p>SP/month = {spPerMonth}</p>
+        <p>Benefit = {benefit.toFixed()}</p>
         <SPCalculatorForm
           omegaClone={omegaClone}
           primaryAttribute={primaryAttribute}
@@ -58,9 +82,44 @@ class App extends React.Component {
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
         />
-        <p>SP/minute = {spPerMinute}</p>
-        <p>SP/day = {spPerDay}</p>
-        <p>SP/month = {spPerMonth}</p>
+
+        <form onSubmit={this.handleSubmit}>
+          <fieldset>
+            <legend>Prices (millions):</legend>
+            <p>
+              <label htmlFor='largeSkillInjectorPrice'>
+                Large Skill Injector:
+              </label>
+              <input
+                id='largeSkillInjectorPrice'
+                type='number'
+                name='largeSkillInjectorPrice'
+                value={this.state.largeSkillInjectorPrice}
+                onChange={this.handleChange}
+              />
+            </p>
+            <p>
+              <label htmlFor='skillExtractorPrice'>Skill Extractor:</label>
+              <input
+                id='skillExtractorPrice'
+                type='number'
+                name='skillExtractorPrice'
+                value={this.state.skillExtractorPrice}
+                onChange={this.handleChange}
+              />
+            </p>
+            <p>
+              <label htmlFor='plexPrice'>Plex:</label>
+              <input
+                id='plexPrice'
+                type='number'
+                name='plexPrice'
+                value={this.state.plexPrice}
+                onChange={this.handleChange}
+              />
+            </p>
+          </fieldset>
+        </form>
       </div>
     );
   }
